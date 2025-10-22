@@ -20,6 +20,17 @@ db.connect((err) => {
     console.log('mysql connected to Mysql successfully');
 })
 
+// Endpoint untuk ambil semua data dari tabel mahasiswa
+app.get('/api/mahasiswa', (req, res) => {
+    const sql = 'SELECT * FROM biodata';
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: "Database Error" });
+        }
+        res.json(results);
+    });
+});
 
 
 
